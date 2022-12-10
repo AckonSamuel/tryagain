@@ -35,7 +35,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_10_111616) do
 
   create_table "clubs", force: :cascade do |t|
     t.string "name"
-    t.string "email"
     t.integer "telephone_number"
     t.string "group"
     t.datetime "created_at", null: false
@@ -59,7 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_10_111616) do
 
   create_table "staffs", force: :cascade do |t|
     t.string "name"
-    t.string "email"
     t.integer "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -67,7 +65,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_10_111616) do
 
   create_table "students", force: :cascade do |t|
     t.string "name"
-    t.string "email"
     t.integer "phone_number"
     t.string "programme_name"
     t.datetime "created_at", null: false
