@@ -5,7 +5,7 @@ class CreateExecutive < ActiveRecord::Migration[7.0]
     enable_extension 'pgcrypto'
     create_table :executives, id: :uuid do |t|
       t.string :portfolio
-      t.references :club_student, null: false, foreign_key: true, default: ''
+      t.references :club_student, null: false, foreign_key: true, default: '', type: :uuid
 
       t.timestamps
     end
