@@ -82,6 +82,7 @@ class StaffsController < ApplicationController
       :email, 
       :phone_number,
       :password,
+      :role,
       :password_confirmation,)
   end
 end
