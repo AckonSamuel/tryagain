@@ -43,15 +43,15 @@ end
   end
 
   # POST /students
-  def create
-    @student = Student.new(student_params)
+  # def create
+  #   @student = Student.new(student_params)
 
-    if @student.save
-      render json: @student, status: :created, location: @student
-    else
-      render json: @student.errors, status: :unprocessable_entity
-    end
-  end
+  #   if @student.save
+  #     render json: @student, status: :created, location: @student
+  #   else
+  #     render json: @student.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # PATCH/PUT /students/1
   def update

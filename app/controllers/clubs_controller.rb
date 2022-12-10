@@ -23,7 +23,7 @@ class ClubsController < ApplicationController
 def register
   club = Club.create(club_params)
   if club.valid? && club.save
-    render json: club
+    render json: club,
     status: 201
     return
   end
@@ -43,16 +43,16 @@ end
     render json: @club
   end
 
-  # POST /clubs
-  def create
-    @club = Club.new(club_params)
+  # # POST /clubs
+  # def create
+  #   @club = Club.new(club_params)
 
-    if @club.save
-      render json: @club, status: :created, location: @club
-    else
-      render json: @club.errors, status: :unprocessable_entity
-    end
-  end
+  #   if @club.save
+  #     render json: @club, status: :created, location: @club
+  #   else
+  #     render json: @club.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # PATCH/PUT /clubs/1
   def update

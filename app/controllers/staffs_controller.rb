@@ -43,15 +43,15 @@ class StaffsController < ApplicationController
   end
 
   # POST /staffs
-  def create
-    @staff = Staff.new(staff_params)
+  # def create
+  #   @staff = Staff.new(staff_params)
 
-    if @staff.save
-      render json: @staff, status: :created, location: @staff
-    else
-      render json: @staff.errors, status: :unprocessable_entity
-    end
-  end
+  #   if @staff.save
+  #     render json: @staff, status: :created, location: @staff
+  #   else
+  #     render json: @staff.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # PATCH/PUT /staffs/1
   def update
