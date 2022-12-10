@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PatronsController < ApplicationController
-  before_action :set_patron, only: %i[ show update destroy ]
+  before_action :set_patron, only: %i[show update destroy]
 
   # GET /patrons
   def index
@@ -39,13 +41,14 @@ class PatronsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_patron
-      @patron = Patron.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def patron_params
-      params.require(:patron).permit(:club_staff_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_patron
+    @patron = Patron.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def patron_params
+    params.require(:patron).permit(:club_staff_id)
+  end
 end

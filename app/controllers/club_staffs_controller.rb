@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ClubStaffsController < ApplicationController
-  before_action :set_club_staff, only: %i[ show update destroy ]
+  before_action :set_club_staff, only: %i[show update destroy]
 
   # GET /club_staffs
   def index
@@ -39,13 +41,14 @@ class ClubStaffsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_club_staff
-      @club_staff = ClubStaff.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def club_staff_params
-      params.require(:club_staff).permit(:club_id, :staff_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_club_staff
+    @club_staff = ClubStaff.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def club_staff_params
+    params.require(:club_staff).permit(:club_id, :staff_id)
+  end
 end

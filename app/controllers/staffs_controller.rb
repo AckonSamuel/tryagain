@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class StaffsController < ApplicationController
-  before_action :set_staff, only: %i[ show update destroy ]
+  before_action :set_staff, only: %i[show update destroy]
 
   # GET /staffs
   def index
@@ -39,13 +41,14 @@ class StaffsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_staff
-      @staff = Staff.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def staff_params
-      params.require(:staff).permit(:name, :email, :phone_number)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_staff
+    @staff = Staff.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def staff_params
+    params.require(:staff).permit(:name, :email, :phone_number)
+  end
 end
