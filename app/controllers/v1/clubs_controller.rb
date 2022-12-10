@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ClubsController < ApplicationController
+class V1::ClubsController < ApplicationController
   before_action :set_club, only: %i[show update destroy]
 
   # login as club

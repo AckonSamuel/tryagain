@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ExecutivesController < ApplicationController
+class V1::ExecutivesController < ApplicationController
   before_action :set_executive, only: %i[show update destroy]
 
   # GET /executives

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StudentsController < ApplicationController
+class V1::StudentsController < ApplicationController
   before_action :set_student, only: %i[show update destroy]
 
   # POST /student

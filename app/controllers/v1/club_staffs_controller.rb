@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ClubStaffsController < ApplicationController
+class V1::ClubStaffsController < ApplicationController
   before_action :set_club_staff, only: %i[show update destroy]
 
   # GET /club_staffs

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PatronsController < ApplicationController
+class V1::PatronsController < ApplicationController
   before_action :set_patron, only: %i[show update destroy]
 
   # GET /patrons

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StaffsController < ApplicationController
+class V1::StaffsController < ApplicationController
   before_action :set_staff, only: %i[show update destroy]
   # Register as Staff
   def register
