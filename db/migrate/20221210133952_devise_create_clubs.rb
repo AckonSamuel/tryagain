@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-class AddDeviseToStudents < ActiveRecord::Migration[7.0]
-  def self.up
-    change_table :students, id: :uuid do |t|
-      enable_extension 'pgcrypto'
+class DeviseCreateClubs < ActiveRecord::Migration[7.0]
+  def change
+    create_table :clubs do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -34,19 +33,12 @@ class AddDeviseToStudents < ActiveRecord::Migration[7.0]
       # t.datetime :locked_at
 
 
-      # Uncomment below if timestamps were not included in your original model.
-      # t.timestamps null: false
+      t.timestamps null: false
     end
 
-    add_index :students, :email,                unique: true
-    add_index :students, :reset_password_token, unique: true
-    # add_index :students, :confirmation_token,   unique: true
-    # add_index :students, :unlock_token,         unique: true
-  end
-
-  def self.down
-    # By default, we don't want to make any assumption about how to roll back a migration when your
-    # model already existed. Please edit below which fields you would like to remove in this migration.
-    raise ActiveRecord::IrreversibleMigration
+    add_index :clubs, :email,                unique: true
+    add_index :clubs, :reset_password_token, unique: true
+    # add_index :clubs, :confirmation_token,   unique: true
+    # add_index :clubs, :unlock_token,         unique: true
   end
 end
