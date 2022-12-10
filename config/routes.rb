@@ -13,4 +13,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'clubs#index'
+  post 'users/register', to: 'users#register'
 end
