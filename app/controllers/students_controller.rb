@@ -7,28 +7,29 @@ class StudentsController < ApplicationController
   def register
     student = Student.create(student_params)
     if student.valid? && student.save
-        render json: student,
-        status: 201
-        return
+      render json: student,
+             status: 201
+      return
     end
     render json: student.errors,
-      status: 400
-end
-
-def login
-  email = params[:student][:email]
-  password = params[:student][:password]
-  student = Student.find_by(email: email)
-  is_valid = student && student.valid_password?(password)
-  unless is_valid
-      render json: {
-          status: 'error',
-          message: 'Invalid student credentials',
-      }, status: 400 and return
+           status: 400
   end
-  return render json: student,
-    status: 200
-end
+
+  def login
+    email = params[:student][:email]
+    password = params[:student][:password]
+    student = Student.find_by(email: email)
+    is_valid = student&.valid_password?(password)
+    unless is_valid
+      render json: {
+        status: 'error',
+        message: 'Invalid student credentials'
+      }, status: 400 and return
+    end
+
+    render json: student,
+           status: 200
+  end
 
   # GET /students
   def index

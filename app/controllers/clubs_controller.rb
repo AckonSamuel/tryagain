@@ -3,33 +3,34 @@
 class ClubsController < ApplicationController
   before_action :set_club, only: %i[show update destroy]
 
-  #login as club
+  # login as club
   def login
     email = params[:club][:email]
     password = params[:club][:password]
     club = Club.find_by(email: email)
-    is_valid = club && club.valid_password?(password)
+    is_valid = club&.valid_password?(password)
     unless is_valid
       render json: {
         status: 'error',
-        message: 'Invalid club credentials',
+        message: 'Invalid club credentials'
       }, status: 400 and return
     end
-    return render json: club,
-    status: 200
+
+    render json: club,
+           status: 200
   end
 
-# register as club
-def register
-  club = Club.create(club_params)
-  if club.valid? && club.save
-    render json: club,
-    status: 201
-    return
+  # register as club
+  def register
+    club = Club.create(club_params)
+    if club.valid? && club.save
+      render json: club,
+             status: 201
+      return
+    end
+    render json: club.errors,
+           status: 400
   end
-  render json: club.errors,
-    status: 400
-end
 
   # GET /clubs
   def index

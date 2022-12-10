@@ -3,10 +3,10 @@
 class DeviseCreateStudents < ActiveRecord::Migration[7.0]
   def change
     enable_extension 'pgcrypto'
-    create_table :students, id: :uuid  do |t|
+    create_table :students, id: :uuid do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :email,              null: false, default: ''
+      t.string :encrypted_password, null: false, default: ''
 
       ## Recoverable
       t.string   :reset_password_token
@@ -33,10 +33,9 @@ class DeviseCreateStudents < ActiveRecord::Migration[7.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-      t.string :name, null: false, default: ""
-      t.integer :phone_number, null: false, default: ""
-      t.string :programme_name, null: false, default: ""
-
+      t.string :name, null: false, default: ''
+      t.integer :phone_number, null: false, default: ''
+      t.string :programme_name, null: false, default: ''
 
       t.timestamps null: false
     end
