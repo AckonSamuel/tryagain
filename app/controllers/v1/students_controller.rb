@@ -27,8 +27,12 @@ module V1
           message: 'Invalid student credentials'
         }, status: 400 and return
       end
-
-      render json: student,
+      student = StudentSerializer.new(student)
+      options = {}
+      serialization = ActiveModelSerializers::SerializableResource.new(student, options)
+      serialization.to_json
+      res = serialization.as_json
+      render json: res,
              status: 200
     end
 
