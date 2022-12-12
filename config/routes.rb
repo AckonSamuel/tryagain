@@ -2,6 +2,17 @@
 
 Rails.application.routes.draw do
   get 'private/test'
+  devise_for :students, 
+    path: '', 
+    path_names: {
+      sign_in: 'login',
+      sign_out: 'logout',
+      registration: 'signup'
+    },
+    controllers: {
+      sessions: 'students/sessions',
+      registrations: 'students/registrations'
+    }
   # devise_for :staffs
   # devise_for :students
   # devise_for :clubs
