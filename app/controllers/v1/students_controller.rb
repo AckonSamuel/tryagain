@@ -6,14 +6,14 @@ module V1
 
     # POST /student
     def register
-      student = Student.create(student_params)
-      if student.valid? && student.save
-        render json: student,
-               status: 201
-        return
-      end
-      render json: student.errors,
-             status: 400
+      # student = Student.create(student_params)
+      # if student.valid? && student.save
+      #   render json: student,
+      #          status: 201
+      #   return
+      # end
+      # render json: student.errors,
+      #        status: 400
     end
 
     def login
