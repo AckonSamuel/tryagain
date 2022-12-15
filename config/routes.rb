@@ -23,6 +23,16 @@ Rails.application.routes.draw do
     sessions: 'clubs/sessions',
     registrations: 'clubs/registrations'
   }
+
+  devise_for :staffs, defaults: { format: :json }, path: 'auth/staffs/', path_names: {
+    sign_in: 'login',
+    sign_out: 'logout',
+    registration: 'signup'
+  },
+  controllers: {
+    sessions: 'staffs/sessions',
+    registrations: 'staffs/registrations'
+  }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   concern :base_api do
     post 'staffs/register', to: 'staffs#register'
