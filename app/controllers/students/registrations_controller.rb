@@ -14,6 +14,8 @@ class Students::RegistrationsController < Devise::RegistrationsController
              status: 400
   end
 
+  private
+
   def student_params
     params.require(:student).permit(
       :name,
