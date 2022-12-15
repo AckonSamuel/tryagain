@@ -51,6 +51,8 @@ group :development do
   gem 'dotenv-rails'
 end
 
+gem 'openssl', '~> 3.0'
+
 gem 'devise-jwt'
 
 gem 'active_model_serializers', '~> 0.10.0'
