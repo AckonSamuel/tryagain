@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-class Students::RegistrationsController < Devise::RegistrationsController
-  respond_to :json
+module Students
+  class RegistrationsController < Devise::RegistrationsController
+    respond_to :json
 
-  def create
-    student = Student.create(student_params)
+    def create
+      student = Student.create(student_params)
       if student.valid? && student.save
         render json: student,
                status: 201
@@ -12,18 +13,19 @@ class Students::RegistrationsController < Devise::RegistrationsController
       end
       render json: student.errors,
              status: 400
-  end
+    end
 
-  private
+    private
 
-  def student_params
-    params.require(:student).permit(
-      :name,
-      :email,
-      :phone_number,
-      :programme_name,
-      :password,
-      :password_confirmation
-    )
+    def student_params
+      params.require(:student).permit(
+        :name,
+        :email,
+        :phone_number,
+        :programme_name,
+        :password,
+        :password_confirmation
+      )
+    end
   end
 end

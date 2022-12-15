@@ -8,7 +8,7 @@ module V1
     def login
       email = params[:club][:email]
       password = params[:club][:password]
-      club = Club.find_by(email: email)
+      club = Club.find_by(email:)
       is_valid = club&.valid_password?(password)
       unless is_valid
         render json: {

@@ -19,7 +19,7 @@ module V1
     def login
       email = params[:student][:email]
       password = params[:student][:password]
-      student = Student.find_by(email: email)
+      student = Student.find_by(email:)
       is_valid = student&.valid_password?(password)
       unless is_valid
         render json: {
@@ -27,6 +27,7 @@ module V1
           message: 'Invalid student credentials'
         }, status: 400 and return
       end
+
       student = StudentSerializer.new(student)
       options = {}
       serialization = ActiveModelSerializers::SerializableResource.new(student, options)

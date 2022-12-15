@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-class Clubs::RegistrationsController < Devise::RegistrationsController
-  respond_to :json
+module Clubs
+  class RegistrationsController < Devise::RegistrationsController
+    respond_to :json
 
-  def create
-    club = Club.create(club_params)
+    def create
+      club = Club.create(club_params)
       if club.valid? && club.save
         render json: club,
                status: 201
@@ -12,11 +13,11 @@ class Clubs::RegistrationsController < Devise::RegistrationsController
       end
       render json: club.errors,
              status: 400
-  end
+    end
 
-  private
+    private
 
-  def club_params
+    def club_params
       params.require(:club).permit(
         :name,
         :email,
@@ -25,5 +26,6 @@ class Clubs::RegistrationsController < Devise::RegistrationsController
         :password,
         :password_confirmation
       )
+    end
   end
 end

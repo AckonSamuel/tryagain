@@ -19,7 +19,7 @@ module V1
     def login
       email = params[:staff][:email]
       password = params[:staff][:password]
-      staff = Staff.find_by(email: email)
+      staff = Staff.find_by(email:)
       is_valid = staff&.valid_password?(password)
       unless is_valid
         render json: {

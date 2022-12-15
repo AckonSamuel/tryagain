@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
-class Staffs::RegistrationsController < Devise::RegistrationsController
-  respond_to :json
-  def create
-    staff = Staff.create(staff_params)
+module Staffs
+  class RegistrationsController < Devise::RegistrationsController
+    respond_to :json
+    def create
+      staff = Staff.create(staff_params)
       if staff.valid? && staff.save
         render json: staff,
                status: 201
@@ -11,18 +12,19 @@ class Staffs::RegistrationsController < Devise::RegistrationsController
       end
       render json: staff.errors,
              status: 400
-  end
+    end
 
-  private
+    private
 
-  def staff_params
-    params.require(:staff).permit(
-      :name,
-      :email,
-      :phone_number,
-      :password,
-      :role,
-      :password_confirmation
-    )
+    def staff_params
+      params.require(:staff).permit(
+        :name,
+        :email,
+        :phone_number,
+        :password,
+        :role,
+        :password_confirmation
+      )
+    end
   end
 end
