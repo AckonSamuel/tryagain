@@ -4,10 +4,6 @@ module Staffs
   class SessionsController < Devise::SessionsController
     respond_to :json
 
-  #   def create
-  #   super render json: { }
-  # end
-
   private
 
   def current_token

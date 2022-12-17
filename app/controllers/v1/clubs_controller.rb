@@ -80,7 +80,7 @@ module V1
     # Only allow a list of trusted parameters through.
     def club_params
       params.require(:club).permit(
-        :name,
+        :club_name,
         :email,
         :telephone_number,
         :group,

@@ -2,6 +2,6 @@
 
 module V1
   class StudentSerializer < ActiveModel::Serializer
-    attributes :id, :name, :email, :phone_number, :programme_name
+    attributes :id, :student_name, :email, :phone_number, :programme_name
   end
 end

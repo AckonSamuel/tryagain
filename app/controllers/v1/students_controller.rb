@@ -4,39 +4,6 @@ module V1
   class StudentsController < ApplicationController
     before_action :set_student, only: %i[show update destroy]
 
-    # POST /student
-    # def register
-    #   student = Student.create(student_params)
-    #   if student.valid? && student.save
-    #     render json: student,
-    #            status: 201
-    #     return
-    #   end
-    #   render json: student.errors,
-    #          status: 400
-    # end
-
-    # def login
-    #   email = params[:student][:email]
-    #   password = params[:student][:password]
-    #   student = Student.find_by(email:)
-    #   is_valid = student&.valid_password?(password)
-    #   unless is_valid
-    #     render json: {
-    #       status: 'error',
-    #       message: 'Invalid student credentials'
-    #     }, status: 400 and return
-    #   end
-
-    #   student = StudentSerializer.new(student)
-    #   options = {}
-    #   serialization = ActiveModelSerializers::SerializableResource.new(student, options)
-    #   serialization.to_json
-    #   res = serialization.as_json
-    #   render json: res,
-    #          status: 200
-    # end
-
     # GET /students
     def index
       @students = Student.all
@@ -48,17 +15,6 @@ module V1
     def show
       render json: @student
     end
-
-    # POST /students
-    # def create
-    #   @student = Student.new(student_params)
-
-    #   if @student.save
-    #     render json: @student, status: :created, location: @student
-    #   else
-    #     render json: @student.errors, status: :unprocessable_entity
-    #   end
-    # end
 
     # PATCH/PUT /students/1
     def update
@@ -84,7 +40,7 @@ module V1
     # Only allow a list of trusted parameters through.
     def student_params
       params.require(:student).permit(
-        :name,
+        :student_name,
         :email,
         :phone_number,
         :programme_name,

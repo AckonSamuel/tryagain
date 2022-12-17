@@ -18,7 +18,7 @@ module Staffs
 
     def staff_params
       params.require(:staff).permit(
-        :name,
+        :staff_name,
         :email,
         :phone_number,
         :password,

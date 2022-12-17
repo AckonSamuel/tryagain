@@ -2,6 +2,6 @@
 
 module V1
   class StaffSerializer < ActiveModel::Serializer
-    attributes :id, :name, :email, :phone_number, :role
+    attributes :id, :staff_name, :email, :phone_number, :role
   end
 end
