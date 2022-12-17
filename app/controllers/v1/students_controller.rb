@@ -5,37 +5,37 @@ module V1
     before_action :set_student, only: %i[show update destroy]
 
     # POST /student
-    def register
-      student = Student.create(student_params)
-      if student.valid? && student.save
-        render json: student,
-               status: 201
-        return
-      end
-      render json: student.errors,
-             status: 400
-    end
+    # def register
+    #   student = Student.create(student_params)
+    #   if student.valid? && student.save
+    #     render json: student,
+    #            status: 201
+    #     return
+    #   end
+    #   render json: student.errors,
+    #          status: 400
+    # end
 
-    def login
-      email = params[:student][:email]
-      password = params[:student][:password]
-      student = Student.find_by(email:)
-      is_valid = student&.valid_password?(password)
-      unless is_valid
-        render json: {
-          status: 'error',
-          message: 'Invalid student credentials'
-        }, status: 400 and return
-      end
+    # def login
+    #   email = params[:student][:email]
+    #   password = params[:student][:password]
+    #   student = Student.find_by(email:)
+    #   is_valid = student&.valid_password?(password)
+    #   unless is_valid
+    #     render json: {
+    #       status: 'error',
+    #       message: 'Invalid student credentials'
+    #     }, status: 400 and return
+    #   end
 
-      student = StudentSerializer.new(student)
-      options = {}
-      serialization = ActiveModelSerializers::SerializableResource.new(student, options)
-      serialization.to_json
-      res = serialization.as_json
-      render json: res,
-             status: 200
-    end
+    #   student = StudentSerializer.new(student)
+    #   options = {}
+    #   serialization = ActiveModelSerializers::SerializableResource.new(student, options)
+    #   serialization.to_json
+    #   res = serialization.as_json
+    #   render json: res,
+    #          status: 200
+    # end
 
     # GET /students
     def index

@@ -4,33 +4,33 @@ module V1
   class StaffsController < ApplicationController
     before_action :set_staff, only: %i[show update destroy]
     # Register as Staff
-    def register
-      staff = Staff.create(staff_params)
-      if staff.valid? && staff.save
-        render json: staff,
-               status: 201
-        return
-      end
-      render json: staff.errors,
-             status: 400
-    end
+    # def register
+    #   staff = Staff.create(staff_params)
+    #   if staff.valid? && staff.save
+    #     render json: staff,
+    #            status: 201
+    #     return
+    #   end
+    #   render json: staff.errors,
+    #          status: 400
+    # end
 
-    # Login as Staff
-    def login
-      email = params[:staff][:email]
-      password = params[:staff][:password]
-      staff = Staff.find_by(email:)
-      is_valid = staff&.valid_password?(password)
-      unless is_valid
-        render json: {
-          status: 'error',
-          message: 'Invalid staff credentials'
-        }, status: 400 and return
-      end
+    # # Login as Staff
+    # def login
+    #   email = params[:staff][:email]
+    #   password = params[:staff][:password]
+    #   staff = Staff.find_by(email:)
+    #   is_valid = staff&.valid_password?(password)
+    #   unless is_valid
+    #     render json: {
+    #       status: 'error',
+    #       message: 'Invalid staff credentials'
+    #     }, status: 400 and return
+    #   end
 
-      render json: staff,
-             status: 200
-    end
+    #   render json: staff,
+    #          status: 200
+    # end
 
     # GET /staffs
     def index

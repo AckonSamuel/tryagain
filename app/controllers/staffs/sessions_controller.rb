@@ -4,16 +4,24 @@ module Staffs
   class SessionsController < Devise::SessionsController
     respond_to :json
 
+  #   def create
+  #   super render json: { }
+  # end
 
-    private
+  private
+
+  def current_token
+    request.env['warden-jwt_auth.token']
+  end
 
     def respond_with(resource, _opts = {})
       render json: {
         status: {code: 200, message: 'Logged in sucessfully.'},
-        data: resource
+        data: resource,
+        accessToken: current_token
       }, status: :ok
     end
-  
+
     def respond_to_on_destroy
       if current_staff
         render json: {
