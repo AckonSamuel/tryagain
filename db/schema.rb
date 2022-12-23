@@ -42,6 +42,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_15_113030) do
     t.string "club_name", default: "", null: false
     t.integer "telephone_number", null: false
     t.string "group", default: "", null: false
+    t.string "description", default: "", null: false
+    t.string "history", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "jti", default: "", null: false
