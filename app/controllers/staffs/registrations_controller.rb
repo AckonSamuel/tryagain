@@ -18,12 +18,13 @@ module Staffs
 
     def staff_params
       params.require(:staff).permit(
-        :staff_name,
-        :email,
+        :first_name,
+        :last_name,
+        :other_name,
         :phone_number,
         :password,
         :role,
-        :password_confirmation
+        :password_confirmation,
       )
     end
   end

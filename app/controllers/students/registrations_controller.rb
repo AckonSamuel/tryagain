@@ -19,7 +19,9 @@ module Students
 
     def student_params
       params.require(:student).permit(
-        :name,
+        :first_name,
+        :last_name,
+        :other_name,
         :email,
         :phone_number,
         :programme_name,

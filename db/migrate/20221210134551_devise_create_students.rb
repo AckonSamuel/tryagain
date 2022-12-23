@@ -33,7 +33,9 @@ class DeviseCreateStudents < ActiveRecord::Migration[7.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-      t.string :student_name, null: false, default: ''
+      t.string :first_name, null: false, default: ''
+      t.string :other_name,  null: false, default: ''
+      t.string :last_name, null: false, default: ''
       t.integer :phone_number, null: false, default: ''
       t.string :programme_name, null: false, default: ''
 

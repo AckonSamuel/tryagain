@@ -71,7 +71,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_15_113030) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "staff_name", default: "", null: false
+    t.string "first_name", default: "", null: false
+    t.string "other_name", default: "", null: false
+    t.string "last_name", default: "", null: false
     t.integer "phone_number", null: false
     t.string "role", default: "", null: false
     t.datetime "created_at", null: false
@@ -88,7 +90,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_15_113030) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "student_name", default: "", null: false
+    t.string "first_name", default: "", null: false
+    t.string "other_name", default: "", null: false
+    t.string "last_name", default: "", null: false
     t.integer "phone_number", null: false
     t.string "programme_name", default: "", null: false
     t.datetime "created_at", null: false

@@ -32,7 +32,9 @@ class DeviseCreateStaffs < ActiveRecord::Migration[7.0]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-      t.string :staff_name, null: false, default: ''
+      t.string :first_name, null: false, default: ''
+      t.string :other_name,  null: false, default: ''
+      t.string :last_name, null: false, default: ''
       t.integer :phone_number, null: false, default: ''
       t.string :role, null: false, default: ''
 
