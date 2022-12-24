@@ -25,6 +25,7 @@ module Staffs
         :password,
         :role,
         :password_confirmation,
+        :email,
       )
     end
   end
