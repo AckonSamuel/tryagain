@@ -3,7 +3,7 @@
 module V1
   class ClubStudentsController < ApplicationController
     before_action :set_club_student, only: %i[show update destroy]
-
+    
     # GET /club_students
     def index
       @club_students = ClubStudent.all

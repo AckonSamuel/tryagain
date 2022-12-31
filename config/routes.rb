@@ -47,5 +47,9 @@ Rails.application.routes.draw do
   namespace :v1 do
     concerns :base_api
   end
+
+  resources :clubs
+  resources :students
+  resources :staffs
   # Defines the root path route ("/")
 end
