@@ -218,6 +218,10 @@ GEM
       zeitwerk (~> 2.5)
     rake (13.0.6)
     redis (4.8.0)
+    redis-namespace (1.10.0)
+      redis (>= 4)
+    redis-store (1.9.1)
+      redis (>= 4, < 5)
     reline (0.3.2)
       io-console (~> 0.5)
     responders (3.0.1)
@@ -258,6 +262,8 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.0.4)
   redis (~> 4.0)
+  redis-namespace
+  redis-store
   tzinfo-data
 
 RUBY VERSION

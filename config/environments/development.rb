@@ -68,5 +68,13 @@ Rails.application.configure do
   # Enable Action Cable websocket support
   config.action_cable.url = 'ws://localhost:3000/cable'
 
+  # Use Redis cache store
+  config.cache_store = :redis_store, {
+    host: 'localhost',
+    port: 6379,
+    db: 0,
+    namespace: 'cache',
+    expires_in: 1.hour
+  }
 
 end
