@@ -38,6 +38,8 @@ class DeviseCreateClubs < ActiveRecord::Migration[7.0]
       t.string :group, null: false, default: ''
       t.string :description, null: false, default: ''
       t.string :history, null: false, default: ''
+      t.string :meeting_time, null: false, default: ''
+      t.string :meeting_location, null: false, default: ''
 
       t.timestamps null: false
     end

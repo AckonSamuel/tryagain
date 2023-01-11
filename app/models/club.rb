@@ -7,4 +7,7 @@ class Club < ApplicationRecord
 
   has_many :club_student
   has_many :club_staff
+  has_many :project
+  has_many :event
+  has_many :achievements
 end

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :projects
+  resources :achievements
+  resources :events
   default_url_options host: 'localhost', port: '3000'
   resources :posts
   # devise_for :staffs
