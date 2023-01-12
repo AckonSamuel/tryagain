@@ -90,7 +90,7 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+  url: postgres://sammy:uRMOE6wAwhEhm7C6qjVvO8xombFsZfBO@dpg-cevlq04gqg4cnphav9u0-a/tryagain_production_s027
   database: tryagain_production
   username: sammy
   password: uRMOE6wAwhEhm7C6qjVvO8xombFsZfBO
