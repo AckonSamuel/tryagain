@@ -90,6 +90,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: tryagain_production
-  username: tryagain
-  password: <%= ENV["TRYAGAIN_DATABASE_PASSWORD"] %>
+  username: sammy
+  password: uRMOE6wAwhEhm7C6qjVvO8xombFsZfBO
