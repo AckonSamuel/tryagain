@@ -17,6 +17,6 @@ services:
           property: connectionString
   - type: redis
     name: redis
-    isAllowList: []
+    ipAllowList: []
     plan: free
     maxmemoryPolicy: noeviction
