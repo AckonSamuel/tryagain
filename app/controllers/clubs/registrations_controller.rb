@@ -21,8 +21,6 @@ module Clubs
       params.require(:club).permit(
         :club_name,
         :email,
-        :telephone_number,
-        :group,
         :password,
         :password_confirmation
       )
