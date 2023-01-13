@@ -34,7 +34,7 @@ class DeviseCreateClubs < ActiveRecord::Migration[7.0]
       # t.datetime :locked_at
 
       t.string :club_name, null: false, default: ''
-      t.integer :telephone_number, null: false, default: ''
+      t.integer :telephone_number, null: false, default: 0
       t.string :group, null: false, default: ''
       t.string :description, null: false, default: ''
       t.string :history, null: false, default: ''

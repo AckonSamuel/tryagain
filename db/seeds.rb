@@ -1,6 +1,8 @@
 club_data = [
   {
     "club_name": "Art Club",
+    "email": "some@some.com",
+    "password": "some_password",
     "description": "A club for students interested in creating and appreciating art",
     "meeting_time": "Thursdays at 6 PM",
     "meeting_location": "Room 101, Fine Arts Building",
@@ -45,6 +47,8 @@ club_data = [
     "club_name": "Computer Science Club",
     "description": "A club for students interested in computer science and programming",
     "meeting_time": "Mondays at 7 PM",
+    "email": "some@some.com",
+    "password": "some_password",
     "meeting_location": "Room 205, Engineering Building",
     "projects": [
       {
@@ -85,6 +89,8 @@ club_data = [
   },
   {
     "club_name": "Environmental Club",
+    "email": "some@some.com",
+    "password": "some_password",
     "description": "A club for students interested in environmental issues and sustainability",
     "meeting_time": "Wednesdays at 5 PM",
     "meeting_location": "Room 301, Science Building",
@@ -130,6 +136,9 @@ club_data = [
 club_data.each do |data|
   club = Club.new(
     club_name: data['club_name'],
+    password: data['password'],
+    # password_confirmation: data['password_confirmation'],
+    email: data['email'],
     description: data['description'],
     meeting_time: data['meeting_time'],
     meeting_location: data['meeting_location']
