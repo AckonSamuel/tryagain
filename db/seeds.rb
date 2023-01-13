@@ -134,14 +134,14 @@ club_data = [
 ]
 
 club_data.each do |data|
-  club = Club.new(
+  club = Club.create(
     club_name: data['club_name'],
     password: data['password'],
+    password_confirmation: data['password'],
     # password_confirmation: data['password_confirmation'],
     email: data['email'],
-    description: data['description'],
-    meeting_time: data['meeting_time'],
-    meeting_location: data['meeting_location']
+    telephone_number: 0000000000,
+    group: 'IT'
   )
   club.save!
 
