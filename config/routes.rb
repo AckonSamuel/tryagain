@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :objectives
+  resources :visions
   resources :projects
   resources :achievements
   resources :events
   default_url_options host: 'localhost', port: '3000'
   resources :posts
-  # devise_for :staffs
-  # devise_for :students
-  # devise_for :clubs
   devise_for :students, defaults: { format: :json }, path: 'auth/students/', path_names: {
                                                                                sign_in: 'login',
                                                                                sign_out: 'logout',

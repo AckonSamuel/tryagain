@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_11_112433) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_14_032523) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -78,7 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_112433) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "club_name", default: "", null: false
-    t.integer "telephone_number", null: false
+    t.integer "telephone_number", default: 0, null: false
     t.string "group", default: "", null: false
     t.string "description", default: "", null: false
     t.string "history", default: "", null: false
@@ -110,6 +110,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_112433) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["club_student_id"], name: "index_executives_on_club_student_id"
+  end
+
+  create_table "objectives", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "club_id", null: false
+    t.string "statement", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_objectives_on_club_id"
   end
 
   create_table "patrons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -173,6 +181,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_112433) do
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
 
+  create_table "visions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "club_id", null: false
+    t.string "statement", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_visions_on_club_id"
+  end
+
   add_foreign_key "achievements", "clubs"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
@@ -182,6 +198,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_112433) do
   add_foreign_key "club_students", "students"
   add_foreign_key "events", "clubs"
   add_foreign_key "executives", "club_students"
+  add_foreign_key "objectives", "clubs"
   add_foreign_key "patrons", "club_staffs"
   add_foreign_key "projects", "clubs"
+  add_foreign_key "visions", "clubs"
 end

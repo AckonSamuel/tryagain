@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-module V1
   class ClubsController < ApplicationController
     before_action :set_club, only: %i[show update destroy]
     before_action :authenticate_club, only: %i[update, destroy]
@@ -28,8 +27,17 @@ module V1
 
     # PATCH/PUT /clubs/1
     def update
+      if params[:profile_photo].present?
+        @club.profile_photo.purge
+        @club.profile_photo.attach(params[:profile_photo])
+      end
+
+      if params[:banner_photo].present?
+        @club.banner_photo.purge
+        @club.banner_photo.attach(params[:banner_photo])
+    end
       if @club.update(club_params)
-        render json: @club
+        render json: @club, status: :ok
       else
         render json: @club.errors, status: :unprocessable_entity
       end
@@ -55,8 +63,14 @@ module V1
         :telephone_number,
         :group,
         :password,
-        :password_confirmation
+        :password_confirmation,
+        :banner_photo,
+        :profile_photo,
+        :history,
+        :description,
+        :meeting_location,
+        :meeting_time,
       )
     end
   end
-end
+

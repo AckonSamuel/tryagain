@@ -10,4 +10,14 @@ class Club < ApplicationRecord
   has_many :project
   has_many :event
   has_many :achievements
+  has_one_attached :profile_photo
+  has_one_attached :banner_photo
+
+  def profile_photo_url
+    Rails.application.routes.url_helpers.url_for(profile_photo) if profile_photo.attached?
+end
+
+def banner_photo_url
+  Rails.application.routes.url_helpers.url_for(banner_photo) if banner_photo.attached?
+end
 end
