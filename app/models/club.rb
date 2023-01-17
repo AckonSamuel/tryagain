@@ -15,11 +15,12 @@ class Club < ApplicationRecord
 
   def profile_photo_url
     return unless self.profile_photo.attached?
-    Rails.application.routes.url_helpers.rails_blob_path(self.profile_photo)
+    Rails.application.routes.url_helpers.rails_blob_path(self.profile_photo, Rails.application.routes.default_url_options)
   end
 
   def banner_photo_url
     return unless self.banner_photo.attached?
-    Rails.application.routes.url_helpers.rails_blob_path(self.banner_photo)
+    Rails.application.routes.url_helpers.rails_blob_path(self.banner_photo, Rails.application.routes.default_url_options)
   end
+  
 end
