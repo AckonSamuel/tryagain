@@ -3,6 +3,7 @@
   class ClubsController < ApplicationController
     before_action :set_club, only: %i[show update destroy]
     before_action :authenticate_club, only: %i[update, destroy]
+
     # GET /clubs
     def index
       @clubs = Club.all
