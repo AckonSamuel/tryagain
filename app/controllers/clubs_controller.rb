@@ -31,14 +31,11 @@
         @club.profile_photo.purge
         @club.profile_photo.attach(params[:profile_photo])
         render json: @club, status: :created, location: @club
-      end
-
-      if params[:banner_photo].present?
+      elsif params[:banner_photo].present?
         @club.banner_photo.purge
         @club.banner_photo.attach(params[:banner_photo])
         render json: @club, status: :created, location: @club
-    end
-      if @club.update(club_params)
+      elsif @club.update(club_params)
         render json: @club, status: :ok
       else
         render json: @club.errors, status: :unprocessable_entity
