@@ -30,11 +30,27 @@
       if params[:profile_photo].present?
         @club.profile_photo.purge
         @club.profile_photo.attach(params[:profile_photo])
-        render json: @club, status: :created, location: @club
+
+        if @club.save
+          render json: { 
+            profile_photo_url: url_for(@club.profile_photo)
+          }, status: :created
+        else
+          render json: @club.errors, status: :unprocessable_entity
+        end
+
       elsif params[:banner_photo].present?
         @club.banner_photo.purge
         @club.banner_photo.attach(params[:banner_photo])
-        render json: @club, status: :created, location: @club
+
+        if @club.save
+          render json: { 
+            banner_photo_url: url_for(@club.banner_photo)
+          }, status: :created
+        else
+          render json: @club.errors, status: :unprocessable_entity
+        end
+        
       elsif @club.update(club_params)
         render json: @club, status: :ok
       else

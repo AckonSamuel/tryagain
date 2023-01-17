@@ -14,10 +14,12 @@ class Club < ApplicationRecord
   has_one_attached :banner_photo
 
   def profile_photo_url
-    Rails.application.routes.url_helpers.url_for(profile_photo) if profile_photo.attached?
-end
+    return unless self.profile_photo.attached?
+    Rails.application.routes.url_helpers.rails_blob_path(self.profile_photo, only_path: true)
+  end
 
-def banner_photo_url
-  Rails.application.routes.url_helpers.url_for(banner_photo) if banner_photo.attached?
-end
+  def banner_photo_url
+    return unless self.banner_photo.attached?
+    Rails.application.routes.url_helpers.rails_blob_path(self.banner_photo, only_path: true)
+  end
 end
