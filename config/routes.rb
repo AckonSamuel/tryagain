@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :achievements
   resources :events
-  default_url_options host: 'localhost', port: '3000'
+  # default_url_options host: 'localhost', port: '3000'
   resources :posts
   devise_for :students, defaults: { format: :json }, path: 'auth/students/', path_names: {
                                                                                sign_in: 'login',
