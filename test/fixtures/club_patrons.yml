@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  office_in_knust: MyString
+  patron_name: MyString
+  contact: 1
+  constitution: MyString
+  club: one
+
+two:
+  office_in_knust: MyString
+  patron_name: MyString
+  contact: 1
+  constitution: MyString
+  club: two

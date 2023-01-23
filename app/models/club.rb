@@ -12,19 +12,40 @@ class Club < ApplicationRecord
   has_many :achievements
   has_one_attached :profile_photo
   has_one_attached :banner_photo
+  has_one_attached :registration_application_letter
+  has_many_attached :passport_photos
+  has_one_attached :constitution
+  has_one_attached :endorsement_letter
+  has_many :club_executives
+  has_many :club_patrons
 
   def profile_photo_url
     return unless self.profile_photo.attached?
     self.profile_photo.attachment.url
-    # default_url_options = Rails.application.config.action_controller.default_url_options
-    # Rails.application.routes.url_helpers.rails_blob_path(self.profile_photo, default_url_options[:host])
   end
 
   def banner_photo_url
     return unless self.banner_photo.attached?
     self.banner_photo.attachment.url
-    # default_url_options = Rails.application.config.action_controller.default_url_options
-    # Rails.application.routes.url_helpers.rails_blob_path(self.banner_photo, default_url_options[:host])
   end
-  
+
+  def registration_application_letter_url
+    return unless self.registration_application_letter.attached?
+    self.registration_application_letter.attachment.url
+  end
+
+  def constitution_url
+    return unless self.constitution.attached?
+    self.constitution.attachment.url
+  end
+
+  def endorsement_letter_url
+    return unless self.endorsement_letter.attached?
+    self.endorsement_letter.attachment.url
+  end
+
+  def passport_photos_url
+    return unless self.passport_photos.attached?
+    self.passport_photos.attachment.url
+  end
 end

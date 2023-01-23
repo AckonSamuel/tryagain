@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_14_032523) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_23_095856) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -51,6 +51,29 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_032523) do
     t.uuid "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "club_executives", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "portfolio", default: "", null: false
+    t.string "executive_name", default: "", null: false
+    t.integer "contact", default: 0, null: false
+    t.string "programme", default: "", null: false
+    t.string "email", default: "", null: false
+    t.uuid "club_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_club_executives_on_club_id"
+  end
+
+  create_table "club_patrons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "office_in_knust", default: "", null: false
+    t.string "patron_name", default: "", null: false
+    t.integer "contact", default: 0, null: false
+    t.string "constitution", default: "", null: false
+    t.uuid "club_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_club_patrons_on_club_id"
   end
 
   create_table "club_staffs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -192,6 +215,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_032523) do
   add_foreign_key "achievements", "clubs"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "club_executives", "clubs"
+  add_foreign_key "club_patrons", "clubs"
   add_foreign_key "club_staffs", "clubs"
   add_foreign_key "club_staffs", "staffs"
   add_foreign_key "club_students", "clubs"

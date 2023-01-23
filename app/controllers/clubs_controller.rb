@@ -40,6 +40,59 @@
           render json: @club.errors, status: :unprocessable_entity
         end
 
+      elsif params[:constitution].present?
+        @club.constitution.purge
+        @club.constitution.attach(params[:constitution])
+
+        if @club.save
+          render json: {
+            constitution_url: url_for(@club.constitution)
+          }, status: :created
+        else
+          render json: @club.errors, status: :unprocessable_entity
+        end
+
+      elsif params[:endorsement_letter].present?
+        @club.endorsement_letter.purge
+        @club.endorsement_letter.attach(params[:endorsement_letter])
+
+        if @club.save
+          render json: {
+            endorsement_letter_url: url_for(@club.endorsement_letter)
+          }, status: :created
+        else
+          render json: @club.errors, status: :unprocessable_entity
+        end
+
+      elsif params[:registration_application_letter].present?
+        @club.registration_application_letter.purge
+        @club.registration_application_letter.attach(params[:registration_application_letter])
+
+        if @club.save
+          render json: {
+            registration_application_letter_url: url_for(@club.registration_application_letter)
+          }, status: :created
+        else
+          render json: @club.errors, status: :unprocessable_entity
+        end
+
+      elsif params[:passport_photos].present?
+        @club.passport_photos.each do |photo|
+          photo.purge
+        end
+        params[:passport_photos].each do |photo|
+          @club.passport_photos.attach(photo)
+        end
+
+        if @club.save
+          passport_photos_url = @club.passport_photos.map { |photo| url_for(photo)}
+          render json: {
+            passport_photos_url: passport_photos_url
+          }, status: :created
+        else
+          render json: @club.errors, status: :unprocessable_entity
+        end
+
       elsif params[:banner_photo].present?
         @club.banner_photo.purge
         @club.banner_photo.attach(params[:banner_photo])
@@ -86,6 +139,10 @@
         :description,
         :meeting_location,
         :meeting_time,
+        :constitution,
+        :endorsement_letter,
+        :registration_application_letter,
+        passport_photos: []
       )
     end
   end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :club_patrons
+  resources :club_executives
   resources :objectives
   resources :visions
   resources :projects
