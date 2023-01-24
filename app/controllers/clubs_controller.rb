@@ -39,8 +39,9 @@
         else
           render json: @club.errors, status: :unprocessable_entity
         end
+      end
 
-      elsif params[:constitution].present?
+      if params[:constitution].present?
         @club.constitution.purge
         @club.constitution.attach(params[:constitution])
 
@@ -51,8 +52,9 @@
         else
           render json: @club.errors, status: :unprocessable_entity
         end
+      end
 
-      elsif params[:endorsement_letter].present?
+      if params[:endorsement_letter].present?
         @club.endorsement_letter.purge
         @club.endorsement_letter.attach(params[:endorsement_letter])
 
@@ -63,8 +65,9 @@
         else
           render json: @club.errors, status: :unprocessable_entity
         end
+      end
 
-      elsif params[:registration_application_letter].present?
+      if params[:registration_application_letter].present?
         @club.registration_application_letter.purge
         @club.registration_application_letter.attach(params[:registration_application_letter])
 
@@ -75,8 +78,9 @@
         else
           render json: @club.errors, status: :unprocessable_entity
         end
+      end
 
-      elsif params[:passport_photos].present?
+      if params[:passport_photos].present?
         @club.passport_photos.each do |photo|
           photo.purge
         end
@@ -92,8 +96,9 @@
         else
           render json: @club.errors, status: :unprocessable_entity
         end
+      end
 
-      elsif params[:banner_photo].present?
+      if params[:banner_photo].present?
         @club.banner_photo.purge
         @club.banner_photo.attach(params[:banner_photo])
 
@@ -104,8 +109,9 @@
         else
           render json: @club.errors, status: :unprocessable_entity
         end
-        
-      elsif @club.update(club_params)
+      end
+
+      if @club.update(club_params) || @club.save
         render json: @club, status: :ok
       else
         render json: @club.errors, status: :unprocessable_entity

@@ -45,7 +45,12 @@ class Club < ApplicationRecord
   end
 
   def passport_photos_url
-    return unless self.passport_photos.attached?
-    self.passport_photos.attachment.url
+    return [] unless self.passport_photos.attached?
+    urls = []
+    self.passport_photos.each do |photo|
+      urls << photo.attachment.url
+    end
+    urls
   end
+  
 end
