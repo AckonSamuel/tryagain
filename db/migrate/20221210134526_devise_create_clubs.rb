@@ -40,7 +40,8 @@ class DeviseCreateClubs < ActiveRecord::Migration[7.0]
       t.string :history, null: false, default: ''
       t.string :meeting_time, null: false, default: ''
       t.string :meeting_location, null: false, default: ''
-      t.string :possible_membership_size, null: false, defautl: 0
+      t.string :possible_membership_size, null: false, default: 0
+      t.boolean :status, null: false, default: "pending"
 
       t.timestamps null: false
     end
