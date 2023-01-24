@@ -31,53 +31,25 @@
       if params[:profile_photo].present?
         @club.profile_photo.purge
         @club.profile_photo.attach(params[:profile_photo])
-
-        if @club.save
-          render json: { 
-            profile_photo_url: url_for(@club.profile_photo)
-          }, status: :created
-        else
-          render json: @club.errors, status: :unprocessable_entity
-        end
+        render json: @club.errors, status: :unprocessable_entity unless @club.save
       end
 
       if params[:constitution].present?
         @club.constitution.purge
         @club.constitution.attach(params[:constitution])
-
-        if @club.save
-          render json: {
-            constitution_url: url_for(@club.constitution)
-          }, status: :created
-        else
-          render json: @club.errors, status: :unprocessable_entity
-        end
+        render json: @club.errors, status: :unprocessable_entity unless @club.save
       end
 
       if params[:endorsement_letter].present?
         @club.endorsement_letter.purge
         @club.endorsement_letter.attach(params[:endorsement_letter])
-
-        if @club.save
-          render json: {
-            endorsement_letter_url: url_for(@club.endorsement_letter)
-          }, status: :created
-        else
-          render json: @club.errors, status: :unprocessable_entity
-        end
+        render json: @club.errors, status: :unprocessable_entity unless @club.save
       end
 
       if params[:registration_application_letter].present?
         @club.registration_application_letter.purge
         @club.registration_application_letter.attach(params[:registration_application_letter])
-
-        if @club.save
-          render json: {
-            registration_application_letter_url: url_for(@club.registration_application_letter)
-          }, status: :created
-        else
-          render json: @club.errors, status: :unprocessable_entity
-        end
+        render json: @club.errors, status: :unprocessable_entity unless @club.save
       end
 
       if params[:passport_photos].present?
@@ -87,28 +59,13 @@
         params[:passport_photos].each do |photo|
           @club.passport_photos.attach(photo)
         end
-
-        if @club.save
-          passport_photos_url = @club.passport_photos.map { |photo| url_for(photo)}
-          render json: {
-            passport_photos_url: passport_photos_url
-          }, status: :created
-        else
-          render json: @club.errors, status: :unprocessable_entity
-        end
+        render json: @club.errors, status: :unprocessable_entity unless @club.save
       end
 
       if params[:banner_photo].present?
         @club.banner_photo.purge
         @club.banner_photo.attach(params[:banner_photo])
-
-        if @club.save
-          render json: { 
-            banner_photo_url: url_for(@club.banner_photo)
-          }, status: :created
-        else
-          render json: @club.errors, status: :unprocessable_entity
-        end
+        render json: @club.errors, status: :unprocessable_entity unless @club.save
       end
 
       if @club.update(club_params) || @club.save
