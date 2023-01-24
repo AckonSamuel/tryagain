@@ -46,7 +46,6 @@ class Club < ApplicationRecord
 
   def passport_photos_url
     return [] unless self.passport_photos.attached?
-    self.passport_photos.map(&:attachment).map(&:url)
-
+    self.passport_photos.attachment.url
   end
 end
