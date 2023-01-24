@@ -68,17 +68,17 @@
         render json: @club.errors, status: :unprocessable_entity unless @club.save
       end
 
-      if params[:club_name].present? 
-        || params[:email].present? 
-        || params[:telephone_number].present? 
-        || params[:group].present? 
-        || params[:password].present? 
-        || params[:password_confirmation].present? 
-        || params[:history].present? 
-        || params[:description].present? 
-        || params[:meeting_location].present? 
-        || params[:meeting_time].present?
-        || params[:email].present?
+      if params[:club_name].present? || 
+        params[:email].present? || 
+        params[:telephone_number].present? || 
+        params[:group].present? || 
+        params[:password].present? || 
+        params[:password_confirmation].present? ||
+        params[:history].present? || 
+        params[:description].present? || 
+        params[:meeting_location].present? || 
+        params[:meeting_time].present? || 
+        params[:email].present?
 
         @club.update(club_params)
         render json: @club.errors, status: :unprocessable_entity unless @club.save
