@@ -56,7 +56,7 @@
         @club.passport_photos.each do |photo|
           photo.purge
         end
-        params[:passport_photos].each do |photo|
+        params[:passport_photos].values.each do |photo|
           @club.passport_photos.attach(photo)
         end
         render json: @club.errors, status: :unprocessable_entity unless @club.save
@@ -105,7 +105,7 @@
         :constitution,
         :endorsement_letter,
         :registration_application_letter,
-        passport_photos: []
+        :passport_photos
       )
     end
   end
