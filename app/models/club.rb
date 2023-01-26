@@ -20,27 +20,27 @@ class Club < ApplicationRecord
   has_many :club_patrons
 
   def profile_photo_url
-    return unless self.profile_photo.attached?
+    return "" unless self.profile_photo.attached?
     self.profile_photo.attachment.url
   end
 
   def banner_photo_url
-    return unless self.banner_photo.attached?
+    return "" unless self.banner_photo.attached?
     self.banner_photo.attachment.url
   end
 
   def registration_application_letter_url
-    return unless self.registration_application_letter.attached?
+    return "" unless self.registration_application_letter.attached?
     self.registration_application_letter.attachment.url
   end
 
   def constitution_url
-    return unless self.constitution.attached?
+    return "" unless self.constitution.attached?
     self.constitution.attachment.url
   end
 
   def endorsement_letter_url
-    return unless self.endorsement_letter.attached?
+    return "" unless self.endorsement_letter.attached?
     self.endorsement_letter.attachment.url
   end
 
