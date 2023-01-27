@@ -30,6 +30,6 @@ Rails.application.routes.draw do
   patch '/clubs/:club_id/club_executives/:executive_id', to: 'club_executives#update'
   get '/clubs/:club_id/club_executives', to: 'club_executives#index'
   get '/clubs/:club_id/club_executives/:executive_id', to: 'club_executives#show'
-  delete '/clubs/:club_id/club_executives/:executive_id', to: 'club_executive#destroy'
+  delete '/clubs/:club_id/club_executives/:executive_id', to: 'club_executives#destroy'
   # Defines the root path route ("/")
 end
