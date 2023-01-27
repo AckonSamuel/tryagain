@@ -26,10 +26,10 @@ Rails.application.routes.draw do
   end
 
   resources :clubs
-  post '/clubs/:club_id/executives', to: 'club_executives#create'
-  patch '/clubs/:club_id/executives/:executive_id', to: 'club_executives#update'
-  get '/clubs/:club_id/executives', to: 'club_executives#index'
-  get '/clubs/:club_id/executives/:executive_id', to: 'club_executives#show'
-  delete '/clubs/:club_id/executives/:executive_id', to: 'club_executive#destroy'
+  post '/clubs/:club_id/club_executives', to: 'club_executives#create'
+  patch '/clubs/:club_id/club_executives/:executive_id', to: 'club_executives#update'
+  get '/clubs/:club_id/club_executives', to: 'club_executives#index'
+  get '/clubs/:club_id/club_executives/:executive_id', to: 'club_executives#show'
+  delete '/clubs/:club_id/club_executives/:executive_id', to: 'club_executive#destroy'
   # Defines the root path route ("/")
 end

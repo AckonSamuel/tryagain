@@ -41,7 +41,7 @@ class ClubExecutivesController < ApplicationController
     end
 
     def club_executives_params
-        params.require(:executive).permit(
+        params.require(:club_executive).permit(
             :executive_name,
             :portfolio,
             :contact,
