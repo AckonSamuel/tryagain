@@ -1,24 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :club_patrons
-  resources :club_executives
-  resources :objectives
-  resources :visions
-  resources :projects
-  resources :achievements
-  resources :events
-  # default_url_options host: 'localhost', port: '3000'
-  resources :posts
-  devise_for :students, defaults: { format: :json }, path: 'auth/students/', path_names: {
-                                                                               sign_in: 'login',
-                                                                               sign_out: 'logout',
-                                                                               registration: 'signup'
-                                                                             },
-                        controllers: {
-                          sessions: 'students/sessions',
-                          registrations: 'students/registrations'
-                        }
+  # resources :events
+  # # default_url_options host: 'localhost', port: '3000'
+  # resources :posts
 
   devise_for :clubs, defaults: { format: :json }, path: 'auth/clubs/', path_names: {
                                                                          sign_in: 'login',
@@ -30,23 +15,9 @@ Rails.application.routes.draw do
                        registrations: 'clubs/registrations'
                      }
 
-  devise_for :staffs, defaults: { format: :json }, path: 'auth/staffs/', path_names: {
-                                                                           sign_in: 'login',
-                                                                           sign_out: 'logout',
-                                                                           registration: 'signup'
-                                                                         },
-                      controllers: {
-                        sessions: 'staffs/sessions',
-                        registrations: 'staffs/registrations'
-                      }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   concern :base_api do
-    post 'staffs/register', to: 'staffs#register'
-    post 'students/register', to: 'students#register'
     post 'clubs/register', to: 'clubs#register'
-
-    post 'staffs/login', to: 'staffs#login'
-    post 'students/login', to: 'students#login'
     post 'clubs/login', to: 'clubs#login'
   end
 
@@ -55,7 +26,10 @@ Rails.application.routes.draw do
   end
 
   resources :clubs
-  resources :students
-  resources :staffs
+  post '/clubs/:club_id/executives', to: 'club_executives#create'
+  patch '/clubs/:club_id/executives/:executive_id', to: 'club_executives#update'
+  get '/clubs/:club_id/executives', to: 'club_executives#index'
+  get '/clubs/:club_id/executives/:executive_id', to: 'club_executives#show'
+  delete '/clubs/:club_id/executives/:executive_id', to: 'club_executive#destroy'
   # Defines the root path route ("/")
 end
