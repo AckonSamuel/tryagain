@@ -1,6 +1,6 @@
 class ClubExecutivesController < ApplicationController
     before_action :set_club_executives
-    before_action :authenticate_club
+    before_action :authenticate_club!
 
     def index
         club_executive = @club.club_executives.all
