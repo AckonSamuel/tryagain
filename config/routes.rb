@@ -8,11 +8,13 @@ Rails.application.routes.draw do
   devise_for :clubs, defaults: { format: :json }, path: 'auth/clubs/', path_names: {
                                                                          sign_in: 'login',
                                                                          sign_out: 'logout',
-                                                                         registration: 'signup'
+                                                                         registration: 'signup',
+                                                                         confirmation: 'verification'
                                                                        },
                      controllers: {
                        sessions: 'clubs/sessions',
-                       registrations: 'clubs/registrations'
+                       registrations: 'clubs/registrations',
+                       confirmations: 'clubs/confirmations',
                      }
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

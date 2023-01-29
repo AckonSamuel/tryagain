@@ -2,22 +2,22 @@
 
 class Club < ApplicationRecord
   include Devise::JWT::RevocationStrategies::JTIMatcher
-  devise :database_authenticatable, :registerable, :validatable,
+  devise :database_authenticatable, :registerable, :validatable, :confirmable,
          :jwt_authenticatable, :recoverable, :rememberable, jwt_revocation_strategy: self
 
-  has_many :club_student
-  has_many :club_staff
-  has_many :project
-  has_many :event
-  has_many :achievements
+  has_many :club_student, dependent: :destroy
+  has_many :club_staff, dependent: :destroy
+  has_many :project, dependent: :destroy
+  has_many :event, dependent: :destroy
+  has_many :achievements, dependent: :destroy
   has_one_attached :profile_photo
   has_one_attached :banner_photo
   has_one_attached :registration_application_letter
   has_many_attached :passport_photos
   has_one_attached :constitution
   has_one_attached :endorsement_letter
-  has_many :club_executives
-  has_many :club_patrons
+  has_many :club_executives, dependent: :destroy
+  has_many :club_patrons, dependent: :destroy
 
   def profile_photo_url
     return "" unless self.profile_photo.attached?
