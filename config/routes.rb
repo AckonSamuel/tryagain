@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # # default_url_options host: 'localhost', port: '3000'
   # resources :posts
 
-  devise_for :clubs, defaults: { format: :json }, path: 'auth/clubs/', path_names: {
+  devise_for :clubs, path: 'auth/clubs/', path_names: {
                                                                          sign_in: 'login',
                                                                          sign_out: 'logout',
                                                                          registration: 'signup',
