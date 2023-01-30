@@ -7,6 +7,7 @@ module Clubs
     def create
       club = Club.create(club_params)
       if club.valid? && club.save
+        club.send_confirmation_instructions.deliver_now
         render json: club,
                status: 201
         return
