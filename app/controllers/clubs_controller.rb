@@ -2,7 +2,7 @@
 
 class ClubsController < ApplicationController
   before_action :set_club, only: %i[show update destroy]
-  before_action :authenticate_club, only: %i[update destroy]
+  before_action :authenticate_club!, only: %i[update destroy]
 
   # GET /clubs
   def index
@@ -76,7 +76,8 @@ class ClubsController < ApplicationController
        params[:description].present? ||
        params[:meeting_location].present? ||
        params[:meeting_time].present? ||
-       params[:email].present?
+       params[:email].present? ||
+       params[:possible_membership_size]
 
       @club.update(club_params)
       render json: @club.errors, status: :unprocessable_entity unless @club.save
@@ -119,6 +120,7 @@ class ClubsController < ApplicationController
       :constitution,
       :endorsement_letter,
       :registration_application_letter,
+      :possible_membership_size,
       :passport_photos
     )
   end
