@@ -9,11 +9,13 @@ Rails.application.routes.draw do
                                                                          sign_in: 'login',
                                                                          sign_out: 'logout',
                                                                          registration: 'signup',
+                                                                         password: 'password',
                                                                        },
                      controllers: {
                        sessions: 'clubs/sessions',
                        registrations: 'clubs/registrations',
                        confirmations: 'clubs/confirmations',
+                       passwords: 'clubs/passwords',
                      }
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
