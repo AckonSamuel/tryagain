@@ -17,7 +17,9 @@ module Clubs
 
     def edit
       super
-      redirect_to ENV['PASSWORD_RESET_URL']
+      html = "<h1>Reset token verified</h1>\n"
+      html += "<h2>Please click on <a href='https://tryagain-view.vercel.app/password-reset-form' alt='reset form' >this link</a> to reset your password</h2>"
+      render html: html.html_safe, status: :ok
     end
 
     def update
