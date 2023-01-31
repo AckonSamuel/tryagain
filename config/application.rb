@@ -26,6 +26,6 @@ module Tryagain
     config.api_only = true
 
     Rails.application.config.session_store :disabled
-config.middleware.delete ActionDispatch::Session::CookieStore
+    config.middleware.delete ActionDispatch::Session::CookieStore
   end
 end

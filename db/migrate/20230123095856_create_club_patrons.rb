@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateClubPatrons < ActiveRecord::Migration[7.0]
   def change
     create_table :club_patrons, id: :uuid do |t|

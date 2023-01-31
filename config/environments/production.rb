@@ -26,7 +26,7 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
-  config.action_mailer.default_url_options = { host: ENV['ACTION_MAILER_HOST']}
+  config.action_mailer.default_url_options = { host: ENV['ACTION_MAILER_HOST'] }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
@@ -42,7 +42,6 @@ Rails.application.configure do
     host: 'tryagainclub.s3.amazonaws.com',
     protocol: 'https'
   }
-  
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil

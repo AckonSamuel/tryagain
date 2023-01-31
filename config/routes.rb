@@ -5,28 +5,29 @@ Rails.application.routes.draw do
   # # default_url_options host: 'localhost', port: '3000'
   # resources :posts
 
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # concern :base_api do
+  #   post 'clubs/register', to: 'clubs#register'
+  #   post 'clubs/login', to: 'clubs#login'
+  # end
+
+  # namespace :v1 do
+  #   concerns :base_api
+  # end
+  # Defines the root path route ("/")
+
   devise_for :clubs, path: 'auth/clubs/', path_names: {
-                                                                         sign_in: 'login',
-                                                                         sign_out: 'logout',
-                                                                         registration: 'signup',
-                                                                         password: 'password',
-                                                                       },
+                                            sign_in: 'login',
+                                            sign_out: 'logout',
+                                            registration: 'signup',
+                                            password: 'password'
+                                          },
                      controllers: {
                        sessions: 'clubs/sessions',
                        registrations: 'clubs/registrations',
                        confirmations: 'clubs/confirmations',
-                       passwords: 'clubs/passwords',
+                       passwords: 'clubs/passwords'
                      }
-
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  concern :base_api do
-    post 'clubs/register', to: 'clubs#register'
-    post 'clubs/login', to: 'clubs#login'
-  end
-
-  namespace :v1 do
-    concerns :base_api
-  end
 
   resources :clubs
   post '/clubs/:club_id/club_executives', to: 'club_executives#create'
@@ -34,5 +35,4 @@ Rails.application.routes.draw do
   get '/clubs/:club_id/club_executives', to: 'club_executives#index'
   get '/clubs/:club_id/club_executives/:executive_id', to: 'club_executives#show'
   delete '/clubs/:club_id/club_executives/:executive_id', to: 'club_executives#destroy'
-  # Defines the root path route ("/")
 end

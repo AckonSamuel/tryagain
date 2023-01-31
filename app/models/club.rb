@@ -18,32 +18,38 @@ class Club < ApplicationRecord
   has_many :club_patrons, dependent: :destroy
 
   def profile_photo_url
-    return "" unless self.profile_photo.attached?
-    self.profile_photo.attachment.url
+    return '' unless profile_photo.attached?
+
+    profile_photo.attachment.url
   end
 
   def banner_photo_url
-    return "" unless self.banner_photo.attached?
-    self.banner_photo.attachment.url
+    return '' unless banner_photo.attached?
+
+    banner_photo.attachment.url
   end
 
   def registration_application_letter_url
-    return "" unless self.registration_application_letter.attached?
-    self.registration_application_letter.attachment.url
+    return '' unless registration_application_letter.attached?
+
+    registration_application_letter.attachment.url
   end
 
   def constitution_url
-    return "" unless self.constitution.attached?
-    self.constitution.attachment.url
+    return '' unless constitution.attached?
+
+    constitution.attachment.url
   end
 
   def endorsement_letter_url
-    return "" unless self.endorsement_letter.attached?
-    self.endorsement_letter.attachment.url
+    return '' unless endorsement_letter.attached?
+
+    endorsement_letter.attachment.url
   end
 
   def passport_photos_url
-    return ["", ""] unless self.passport_photos.attached?
-    self.passport_photos.attachments.map{|l| l.url}
+    return ['', ''] unless passport_photos.attached?
+
+    passport_photos.attachments.map(&:url)
   end
 end
