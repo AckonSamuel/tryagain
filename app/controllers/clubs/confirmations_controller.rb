@@ -20,7 +20,7 @@ module Clubs
       if resource.errors.empty?
         set_flash_message!(:notice, :confirmed)
         
-        html = "<h1>Reset token verified</h1>\n"
+        html = "<h1>Email has been verified</h1>\n"
         html += "<h2>Please click on <a href='https://tryagain-view.vercel.app' alt='reset form'>this link</a> to redirect to sign in page</h2>"
         render html: html.html_safe, status: :ok
       else
