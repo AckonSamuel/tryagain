@@ -15,6 +15,11 @@ module Clubs
       end
     end
 
+    def edit
+      super
+      redirect_to ENV['PASSWORD_RESET_URL']
+    end
+
     def update
       self.resource = resource_class.reset_password_by_token(resource_params)
       yield resource if block_given?
