@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :users
+  resources :payments
+  resources :fees
+  resources :application_types
+  resources :academic_years
   # resources :events
   # # default_url_options host: 'localhost', port: '3000'
   # resources :posts
