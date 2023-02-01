@@ -2,7 +2,7 @@
 
 class ClubPatronsController < ApplicationController
   before_action :set_club
-  before_action :authenticate_club!
+  # before_action :authenticate_club!
 
   def index
     club_patrons = @club_patron.club_patrons.all
