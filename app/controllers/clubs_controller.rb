@@ -2,7 +2,7 @@
 
 class ClubsController < ApplicationController
   before_action :set_club, only: %i[show update destroy]
-  # before_action :authenticate_club!, only: %i[update destroy]
+  before_action :authenticate_club!, only: %i[update destroy]
 
   # GET /clubs
   def index
@@ -14,17 +14,6 @@ class ClubsController < ApplicationController
   def show
     render json: @club
   end
-
-  # # POST /clubs
-  # def create
-  #   @club = Club.new(club_params)
-
-  #   if @club.save
-  #     render json: @club, status: :created, location: @club
-  #   else
-  #     render json: @club.errors, status: :unprocessable_entity
-  #   end
-  # end
 
   # PATCH/PUT /clubs/1
   def update
@@ -109,8 +98,6 @@ class ClubsController < ApplicationController
       :email,
       :telephone_number,
       :group,
-      :password,
-      :password_confirmation,
       :banner_photo,
       :profile_photo,
       :history,
