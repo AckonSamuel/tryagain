@@ -94,3 +94,4 @@ production:
   database: tryagain_production
   username: tryagain
   password: <%= ENV["TRYAGAIN_DATABASE_PASSWORD"] %>
+  sslmode: require

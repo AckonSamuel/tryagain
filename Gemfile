@@ -55,6 +55,8 @@ end
 
 gem 'devise-jwt'
 
+gem 'cancancan'
+
 gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'aws-sdk-s3', require: false
