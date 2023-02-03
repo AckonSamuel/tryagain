@@ -5,9 +5,6 @@ class Club < ApplicationRecord
   devise :database_authenticatable, :registerable, :validatable, :confirmable,
          :jwt_authenticatable, :recoverable, :rememberable, jwt_revocation_strategy: self
 
-  has_many :project, dependent: :destroy
-  has_many :event, dependent: :destroy
-  has_many :achievements, dependent: :destroy
   has_one_attached :profile_photo
   has_one_attached :banner_photo
   has_one_attached :registration_application_letter

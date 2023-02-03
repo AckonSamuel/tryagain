@@ -6,8 +6,12 @@ module Clubs
 
     def create
       club = Club.create(club_params)
-      if club.valid? && club.save
+      if club.valid? && club.
         club.send_confirmation_instructions unless club.confirmed?
+        # current_year = AcademicYear.where(is_active: true).order(end_year: :desc).first
+        # current_admin = User.where(admin: true)
+        # current_year_club = AcademicyearClub.create(club: club, academic_year: current_year)
+        # current_admin_club_year = AdminClubsYear.create(user: current_admin, club: current_year, academic)
         render json: club,
                status: 201
         return

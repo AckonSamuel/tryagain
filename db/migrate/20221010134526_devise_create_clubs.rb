@@ -4,6 +4,7 @@ class DeviseCreateClubs < ActiveRecord::Migration[7.0]
   def change
     enable_extension 'pgcrypto'
     create_table :clubs, id: :uuid  do |t|
+
       ## Database authenticatable
       t.string :email,              null: false, default: ''
       t.string :encrypted_password, null: false, default: ''
@@ -42,8 +43,7 @@ class DeviseCreateClubs < ActiveRecord::Migration[7.0]
       t.string :meeting_location, null: false, default: ''
       t.string :possible_membership_size, null: false, default: 0
       t.boolean :status, null: false, default: 'pending'
-      t.references :academic_year, null: false, foreign_key: true, type: :uuid
-      t.references :application_type, null: false, foreign_key: true, type: :uuid
+      t.string :application_type, null: false, default: 'new registration'
       t.integer :amount_due, null: false, default: 0
       t.integer :has_submitted, null: false, default: false
       t.string :is_approved, null: false, default: 'Not Approved'
