@@ -6,7 +6,7 @@ module Clubs
 
     def create
       club = Club.new(club_params)
-      club.academic_years = AcademicYear.order(:desc).last
+      club.academic_years = AcademicYear.where( is_active: true ).order(created_at: :desc).first
       if club.valid? && club.save
         club.send_confirmation_instructions unless club.confirmed?
         render json: club, status: :created
