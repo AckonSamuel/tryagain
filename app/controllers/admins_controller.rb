@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AdminsController < ApplicationController
-    before_action :set_admin
+    before_action :set_admin, only: %i[show_admin, show_club, set_year, setfees, approve_club, delete_application]
     before_action :authenticate_admin!
   
     def index
