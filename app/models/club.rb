@@ -11,6 +11,8 @@ class Club < ApplicationRecord
   has_many_attached :passport_photos
   has_one_attached :constitution
   has_one_attached :endorsement_letter
+  belongs_to :academic_year
+  has_many :payments, dependent: :destroy
   has_many :club_executives, dependent: :destroy
   has_many :club_patrons, dependent: :destroy
 
@@ -48,5 +50,9 @@ class Club < ApplicationRecord
     return ['', ''] unless passport_photos.attached?
 
     passport_photos.attachments.map(&:url)
+  end
+
+  def application_year
+    academic_years.order(created_at: :desc).first
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_03_101912) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_23_095856) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -19,17 +19,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_101912) do
     t.string "start_year"
     t.string "end_year"
     t.boolean "is_active"
+    t.uuid "admin_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "academicyear_clubs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "club_id", null: false
-    t.uuid "academic_year_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["academic_year_id"], name: "index_academicyear_clubs_on_academic_year_id"
-    t.index ["club_id"], name: "index_academicyear_clubs_on_club_id"
+    t.index ["admin_id"], name: "index_academic_years_on_admin_id"
   end
 
   create_table "active_storage_attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -60,13 +53,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_101912) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "admin_clubs_years", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "academicyear_club_id", null: false
-    t.uuid "user_id", null: false
+  create_table "admins", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.boolean "admin", default: false, null: false
+    t.string "admin_name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["academicyear_club_id"], name: "index_admin_clubs_years_on_academicyear_club_id"
-    t.index ["user_id"], name: "index_admin_clubs_years_on_user_id"
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
   create_table "club_executives", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -112,12 +114,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_101912) do
     t.string "possible_membership_size", default: "0", null: false
     t.boolean "status", default: true, null: false
     t.string "application_type", default: "new registration", null: false
+    t.uuid "academic_year_id", null: false
     t.integer "amount_due", default: 0, null: false
     t.integer "has_submitted", default: 0, null: false
     t.string "is_approved", default: "Not Approved", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "jti", default: "", null: false
+    t.index ["academic_year_id"], name: "index_clubs_on_academic_year_id"
     t.index ["confirmation_token"], name: "index_clubs_on_confirmation_token", unique: true
     t.index ["email"], name: "index_clubs_on_email", unique: true
     t.index ["jti"], name: "index_clubs_on_jti"
@@ -146,32 +150,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_101912) do
     t.index ["transaction_id"], name: "index_payments_on_transaction_id"
   end
 
-  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
-    t.boolean "admin", default: false, null: false
-    t.string "user_name", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  add_foreign_key "academicyear_clubs", "academic_years"
-  add_foreign_key "academicyear_clubs", "clubs"
+  add_foreign_key "academic_years", "admins"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "admin_clubs_years", "academicyear_clubs"
-  add_foreign_key "admin_clubs_years", "users"
   add_foreign_key "club_executives", "clubs"
   add_foreign_key "club_patrons", "clubs"
+  add_foreign_key "clubs", "academic_years"
   add_foreign_key "fees", "academic_years"
   add_foreign_key "payments", "clubs"
 end

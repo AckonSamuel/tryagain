@@ -1,0 +1,108 @@
+@startuml
+class Payment  {
+    id
+    club_id
+    amount_paid
+    transaction_id
+    status
+    created_at
+    updated_at
+}
+
+class Fee  {
+    id
+    amount
+    academic_year_id
+    application_type
+    created_at
+    updated_at
+}
+
+class ClubPatron  {
+    id
+    office_in_knust
+    patron_name
+    contact
+    constitution
+    club_id
+    created_at
+    updated_at
+}
+
+class ClubExecutive  {
+    id
+    portfolio
+    executive_name
+    contact
+    programme
+    email
+    club_id
+    created_at
+    updated_at
+}
+
+class AcademicYear  {
+    id
+    start_year
+    end_year
+    is_active
+    admin_id
+    created_at
+    updated_at
+}
+
+class Club  {
+    id
+    email
+    encrypted_password
+    reset_password_token
+    reset_password_sent_at
+    remember_created_at
+    confirmation_token
+    confirmed_at
+    confirmation_sent_at
+    unconfirmed_email
+    club_name
+    telephone_number
+    group
+    description
+    history
+    meeting_time
+    meeting_location
+    possible_membership_size
+    status
+    application_type
+    academic_year_id
+    amount_due
+    has_submitted
+    is_approved
+    created_at
+    updated_at
+    jti
+}
+
+class Admin  {
+    id
+    email
+    encrypted_password
+    reset_password_token
+    reset_password_sent_at
+    remember_created_at
+    confirmation_token
+    confirmed_at
+    confirmation_sent_at
+    unconfirmed_email
+    admin
+    admin_name
+    created_at
+    updated_at
+}
+
+Payment "*" -- "1" Club : "club\npayments"
+Fee -- "1" AcademicYear : "academic_year"
+ClubPatron "*" -- "1" Club : "club\nclub_patrons"
+ClubExecutive "*" -- "1" Club : "club\nclub_executives"
+AcademicYear "*" -- "1" Admin : "admin\nacademic_years"
+Club "*" -- "1" AcademicYear : "academic_year\nclubs"
+
+@enduml

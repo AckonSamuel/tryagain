@@ -1,23 +1,26 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users, path: 'auth/users/admin', path_names: {
+  devise_for :admins, path: 'auth/admin', path_names: {
                                             sign_in: 'login',
                                             sign_out: 'logout',
                                             registration: 'signup',
                                             password: 'password'
                                           },
                      controllers: {
-                       sessions: 'users/sessions',
-                       registrations: 'users/registrations',
-                       confirmations: 'users/confirmations',
-                       passwords: 'users/passwords'
+                       sessions: 'admins/sessions',
+                       registrations: 'admins/registrations',
+                       confirmations: 'admins/confirmations',
+                       passwords: 'admins/passwords'
                      }
-
-  resources :payments
-  resources :fees
-  resources :application_types
-  resources :academic_years
+  get '/admin/:admin_id/clubs', to: 'admins#index'
+  get '/admin/:admin_id/clubs/:club_id', to: 'admins#show_club'
+  get '/admin/:admin_id', to: 'admins#show_admin'
+  post '/admin/:admin_id/set_year', to: 'admin#set_year'
+  post '/admin/:admin_id/setfees', to: 'admin#set_fees'
+  patch '/admin/:admin_id/approve_club/:club_id', to: 'admin#approve_club'
+  delete '/admin/:admin_id/delete_application/:club_id', to: 'admins#delete_application'
+  
   # resources :events
   # # default_url_options host: 'localhost', port: '3000'
   # resources :posts

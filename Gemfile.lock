@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/HappyKadaver/rails-plantuml-generator
+  revision: 87d5103c16b5a3e6a99543f5c028a5ec154c0192
+  specs:
+    rails-plantuml-generator (0.5.2)
+      rails (>= 3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -253,6 +260,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.0.4)
   rails-erd
+  rails-plantuml-generator!
   redis (~> 4.0)
   sidekiq
   tzinfo-data

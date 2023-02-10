@@ -1,21 +1,26 @@
 # frozen_string_literal: true
 
-class UsersController < ApplicationController
-    before_action :set_user
-    before_action :authenticate_user!
+class AdminsController < ApplicationController
+    before_action :set_admin
+    before_action :authenticate_admin!
   
     def index
         clubs = Club.all
       render json: clubs, status: :ok
     end
+
+    def show_admin
+        render json: @admin, status: :ok
+    end
   
-    def show
-        club = Club.find(params[:id])
+    def show_club
+        club = Club.find(params[:club_id])
       render json: club, status: :ok
     end
   
     def set_year
-        academic_year = AcademicYear.create(academic_year_params)
+        academic_year = AcademicYear.new(academic_year_params)
+        academic_year.admin = current_admin
         if academic_year.save
             YearWorker.perform(academic_year.start_year)
             render json: academic_year, status: :ok
@@ -36,7 +41,7 @@ class UsersController < ApplicationController
   
 
     def approve_club
-        club = Club.find(params[:id])
+        club = Club.find(params[:club_id])
         club.is_approved = params[:is_approved]
         if club.save
             render json: club, status: :ok
@@ -46,13 +51,13 @@ class UsersController < ApplicationController
     end
 
     def delete_application
-        Club.find(params[:id]).destroy!
+        Club.find(params[:club_id]).destroy!
     end
   
     private
   
-    def set_user
-      @user = User.find(params[:user_id])
+    def set_admin
+      @admin = admin.find(params[:admin_id])
     end
 
     def academic_year_params
