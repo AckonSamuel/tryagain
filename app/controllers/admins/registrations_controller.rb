@@ -5,7 +5,7 @@ module Admins
       respond_to :json
   
       def create
-        admin = admin.create(admin_params)
+        admin = Admin.create(admin_params)
         if admin.valid? && admin.save
           admin.send_confirmation_instructions unless admin.confirmed?
           render json: admin,
