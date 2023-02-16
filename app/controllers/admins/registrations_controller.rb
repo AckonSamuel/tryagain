@@ -1,26 +1,28 @@
 # frozen_string_literal: true
 
-module Users
+module Admins
     class RegistrationsController < Devise::RegistrationsController
       respond_to :json
   
       def create
-        user = user.create(user_params)
-        if user.valid? && user.save
-          user.send_confirmation_instructions unless user.confirmed?
-          render json: user,
+        admin = admin.create(admin_params)
+        if admin.valid? && admin.save
+          admin.send_confirmation_instructions unless admin.confirmed?
+          render json: admin,
                  status: 201
           return
         end
-        render json: user.errors,
+        render json: admin.errors,
                status: 400
       end
   
       private
   
-      def user_params
-        params.require(:user).permit(
-          :user_name,
+      def admin_params
+        params.require(:admin).permit(
+          :first_name,
+          :other_name,
+          :last_name,
           :email,
           :password,
           :password_confirmation

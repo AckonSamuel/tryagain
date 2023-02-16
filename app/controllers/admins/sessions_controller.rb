@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Users
+module Admins
     class SessionsController < Devise::SessionsController
       respond_to :json
   
@@ -32,7 +32,7 @@ module Users
       end
   
       def respond_to_on_destroy
-        if current_user
+        if current_admin
           render json: {
             status: 200,
             message: 'logged out successfully'
