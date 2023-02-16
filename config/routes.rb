@@ -16,9 +16,9 @@ Rails.application.routes.draw do
   get '/admin/:admin_id/clubs', to: 'admins#index'
   get '/admin/:admin_id/clubs/:club_id', to: 'admins#show_club'
   get '/admin/:admin_id', to: 'admins#show_admin'
-  post '/admin/:admin_id/set_year', to: 'admin#set_year'
-  post '/admin/:admin_id/setfees', to: 'admin#set_fees'
-  patch '/admin/:admin_id/approve_club/:club_id', to: 'admin#approve_club'
+  post '/admin/:admin_id/set_year', to: 'admins#set_year'
+  post '/admin/:admin_id/setfees', to: 'admins#set_fees'
+  patch '/admin/:admin_id/approve_club/:club_id', to: 'admins#approve_club'
   delete '/admin/:admin_id/delete_application/:club_id', to: 'admins#delete_application'
   
   # resources :events
