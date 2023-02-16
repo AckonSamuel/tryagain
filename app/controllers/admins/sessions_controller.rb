@@ -4,23 +4,6 @@ module Admins
     class SessionsController < Devise::SessionsController
       respond_to :json
   
-      # def create
-      #   self.resource = warden.authenticate!(auth_options)
-      #   set_flash_message!(:notice, :signed_in)
-      #   if resource.confirmed?
-      #     sign_in(resource_name, resource)
-      #     yield resource if block_given?
-      #     render json: {
-      #       status: { code: 200, message: 'Logged in sucessfully.' },
-      #       data: resource,
-      #       accessToken: current_token
-      #     }, status: :ok
-      #   else
-      #     set_flash_message!(:error, :unconfirmed_email)
-      #     respond_with({ error: 'Please confirm your email address before signing in' }, status: :unprocessable_entity)
-      #   end
-      # end
-  
       private
   
       def current_token

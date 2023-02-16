@@ -36,12 +36,14 @@ class DeviseCreateAdmins < ActiveRecord::Migration[7.0]
       t.string :first_name, null: false, default: ''
       t.string :other_names, null: false, default: ''
       t.string :last_name, null: false, default: ''
-
+      t.string :jti, null: false, default: ''
+      
       t.timestamps null: false
     end
 
     add_index :admins, :email,                unique: true
     add_index :admins, :reset_password_token, unique: true
+    add_index :admins, :jti
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
   end
