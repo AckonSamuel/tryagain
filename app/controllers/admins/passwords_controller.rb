@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Users
+module Admins
     class PasswordsController < Devise::PasswordsController
       respond_to :json
   
