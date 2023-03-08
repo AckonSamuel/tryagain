@@ -19,6 +19,10 @@ module Tryagain
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
+    logger = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.log_tags = [:subdomain, :uuid]
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
