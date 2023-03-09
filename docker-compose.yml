@@ -13,6 +13,15 @@ x-app: &default-app
   restart: "${DOCKER_RESTART_POLICY}"
   stop_grace_period: "3s"
   tty: true
+  entrypoint: "docker-entrypoint-web.sh"
+  volumes:
+    - ./node_modules:/usr/src/app/node_modules
+    - gems:/usr/local/bundle
+    - log:/usr/src/app/log
+    - tmp:/usr/src/app/tmp
+    - type: "bind"
+      source: "/run/host-services/ssh-auth.sock"
+      target: "/run/host-services/ssh-auth.sock"
 
 services:
   postgres:
@@ -31,6 +40,7 @@ services:
     stop_grace_period: "3s"
     volumes:
       - "tryagain_postgres:/var/lib/postgresql/data"
+      - "./local/db-backups:/app/db-backups"
 
   redis:
     deploy:
@@ -96,3 +106,6 @@ volumes:
     external: true
   tryagain_redis:
     external: true
+  gems:
+  log:
+  tmp:

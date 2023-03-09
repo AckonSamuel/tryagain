@@ -30,11 +30,6 @@ ENV RAILS_ENV="${RAILS_ENV}" \
 COPY --chown=ruby:ruby . .
 
 RUN chmod +x docker-entrypoint-web.sh
-RUN mkdir -p tmp/pids
-RUN bundle install
-
-
-ENTRYPOINT ["./docker-entrypoint-web.sh"]
 
 EXPOSE 8000
 
