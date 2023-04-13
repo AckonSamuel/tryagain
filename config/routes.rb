@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :messages
   devise_for :admins, path: 'auth/admin', path_names: {
                                             sign_in: 'login',
                                             sign_out: 'logout',

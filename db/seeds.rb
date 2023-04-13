@@ -1,0 +1,1 @@
+Message.create(greeting: "Hello World!");
