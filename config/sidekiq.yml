@@ -1,0 +1,13 @@
+:verbose: true
+:concurrency: 25
+:pidfile: ./tmp/pids/sidekiq.pid
+:logfile: ./log/sidekiq.log
+:queues:
+  - default
+
+:staging:
+  :concurrency: 1
+
+:production:
+  :concurrency: 20
+  :url: ENV['REDIS_URL']

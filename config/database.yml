@@ -90,6 +90,8 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: tryagain_production
   username: tryagain
   password: <%= ENV["TRYAGAIN_DATABASE_PASSWORD"] %>
+  sslmode: require
